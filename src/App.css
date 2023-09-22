@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  background-color: rgb(41, 41, 41);
+  color: white;
+  font-family: 'Montserrat';
+}
+
+.mainWidget {
+  height: 50vh;
+  width: 35vw;
+  background-color: rgb(89, 205, 163);
+  border: solid white 2px;
+  border-radius: 15px;
+  transition: all 600ms ease-in-out;
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mainWidget:hover {
+  box-shadow: 0 0 15px white ;
+}
+
+.textBox {
+  width: 70%;
+  height: 25px;
+
+  border: none;
+  border-bottom: 1px solid white;
+  outline: none;
+  background: transparent;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: none;
+  /* color: rgb(191, 105, 138); */
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+::placeholder {
+  color: inherit;
+  opacity: 50%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.timeBubble {
+  border: none;
+  margin: 0px 0 0px 0;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  background-color: rgb(46, 171, 125);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 400ms ease-in-out;
+  cursor: pointer;
+}
+
+.selectedBubble {
+  background-color: rgb(14, 76, 53);
+  border: solid white 2px;
+}
+
+.timeBubble:hover {
+  scale: 110%;
+  box-shadow: 0 0 5px white;
+}
+
+.goButton {
+  margin-top: 35px;
+  height: 30px;
+  width: 20%;
+  background-color: rgb(46, 171, 125);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  transition: all 400ms ease-in-out;
+  border: solid transparent 1px;
+  cursor: pointer;
+}
+
+.goButton:hover {
+  background-color: rgb(20, 107, 75);
+  border: solid white 1px;
 }
