@@ -14,6 +14,7 @@ body {
 }
 
 .mainWidget {
+  position: relative;
   height: 50vh;
   width: 35vw;
   background-color: rgb(89, 205, 163);

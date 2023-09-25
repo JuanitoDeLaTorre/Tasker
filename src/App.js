@@ -61,73 +61,79 @@ function App() {
     <div className="App">
       <div className="body">
         <div className="mainWidget">
-          <h1 style={{ margin: "20px 0px 10px 0px" }}>Good {timeOfDay}!</h1>
-          <input
-            placeholder="What do you want to accomplish?"
-            className="textBox"
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-          />
-          <Dropdown onOptionChange={handleOptionChange} />
-          <h4>Time Limit</h4>
-          <div
-            className="bubbleContainer"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "30px",
-            }}
-          >
-            <button
-              onClick={handleTimeChange}
-              className={`timeBubble ${
-                inputTime === 10 ? "selectedBubble" : ""
-              }`}
-            >
-              10m
-            </button>
-            <button
-              onClick={handleTimeChange}
-              className={`timeBubble ${
-                inputTime === 15 ? "selectedBubble" : ""
-              }`}
-            >
-              15m
-            </button>
-            <button
-              onClick={handleTimeChange}
-              className={`timeBubble ${
-                inputTime === 30 ? "selectedBubble" : ""
-              }`}
-            >
-              30m
-            </button>
-            <button
-              onClick={handleTimeChange}
-              className={`timeBubble ${
-                inputTime === 60 ? "selectedBubble" : ""
-              }`}
-            >
-              1hr
-            </button>
-            <button
-              onClick={handleTimeChange}
-              className={`timeBubble ${
-                inputTime === 120 ? "selectedBubble" : ""
-              }`}
-            >
-              2hr
-            </button>
-          </div>
-          <h4>Importance</h4>
-          <Slider onImportanceChange={handleImportanceChange} />
-          <div className="goButton" onClick={() => handleStartTimer()}>
-            Go and Do!
-          </div>
+          {timerStart ? (
+            <Timer start={timerStart} minutesProp={inputTime} />
+          ) : (
+            <>
+              <h1 style={{ margin: "20px 0px 10px 0px" }}>Good {timeOfDay}!</h1>
+              <input
+                placeholder="What do you want to accomplish?"
+                className="textBox"
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+              />
+              <Dropdown onOptionChange={handleOptionChange} />
+              <h4>Time Limit</h4>
+              <div
+                className="bubbleContainer"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "30px",
+                }}
+              >
+                <button
+                  onClick={handleTimeChange}
+                  className={`timeBubble ${
+                    inputTime === 10 ? "selectedBubble" : ""
+                  }`}
+                >
+                  10m
+                </button>
+                <button
+                  onClick={handleTimeChange}
+                  className={`timeBubble ${
+                    inputTime === 15 ? "selectedBubble" : ""
+                  }`}
+                >
+                  15m
+                </button>
+                <button
+                  onClick={handleTimeChange}
+                  className={`timeBubble ${
+                    inputTime === 30 ? "selectedBubble" : ""
+                  }`}
+                >
+                  30m
+                </button>
+                <button
+                  onClick={handleTimeChange}
+                  className={`timeBubble ${
+                    inputTime === 60 ? "selectedBubble" : ""
+                  }`}
+                >
+                  1hr
+                </button>
+                <button
+                  onClick={handleTimeChange}
+                  className={`timeBubble ${
+                    inputTime === 120 ? "selectedBubble" : ""
+                  }`}
+                >
+                  2hr
+                </button>
+              </div>
+              <h4>Importance</h4>
+              <Slider onImportanceChange={handleImportanceChange} />
+              <div className="goButton" onClick={() => handleStartTimer()}>
+                Go and Do!
+              </div>
+            </>
+          )}
         </div>
-        <Timer start={timerStart} minutesProp={inputTime} />
+        {/* <Timer start={timerStart} minutesProp={inputTime} /> */}
       </div>
     </div>
   );

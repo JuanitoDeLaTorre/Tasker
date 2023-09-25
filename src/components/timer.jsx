@@ -49,15 +49,14 @@ function Timer({start, minutesProp}) {
     return (
 
         <>
-            <h1>Minutes: {minutes}</h1>
-            <h1>Seconds: {seconds}</h1>
+                <div className="timer-container">
+                    <svg>
+                        <circle style = {{animation: style}} r="18" cx="50%" cy="50%"></circle>
+                        <text x="50%" y="50%" text-anchor="middle" alignment-baseline="middle" fill="white" font-size="35">{minutes}m {seconds}s</text>
 
-            <div id="countdown">
-                <div id="countdown-number">{minutes}m {seconds}s</div>
-                <svg>
-                    <circle style = {{animation: style}} r="18" cx="20" cy="20"></circle>
-                </svg>
-            </div>
+                    </svg>
+
+                </div>
         </>
 
 
