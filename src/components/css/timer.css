@@ -21,7 +21,6 @@ svg circle {
     animation: countdown 1s linear forwards;
     transform: scale(7) rotateY(-180deg) rotateZ(-90deg);
     transform-origin: center; /* Add this to set the center of scaling */
-
 }
 
 @keyframes countdown {

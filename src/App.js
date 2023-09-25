@@ -62,7 +62,11 @@ function App() {
       <div className="body">
         <div className="mainWidget">
           {timerStart ? (
-            <Timer start={timerStart} minutesProp={inputTime} />
+            <Timer
+              start={timerStart}
+              minutesProp={inputTime}
+              selectedOption={inputValue}
+            />
           ) : (
             <>
               <h1 style={{ margin: "20px 0px 10px 0px" }}>Good {timeOfDay}!</h1>

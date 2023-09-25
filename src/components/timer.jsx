@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './css/timer.css';
 
-function Timer({start, minutesProp}) {
+function Timer({start, minutesProp, selectedOption}) {
   
     const [minutes, setMinutes] = useState(3)
     const [seconds, setSeconds] = useState(0)
@@ -11,15 +11,23 @@ function Timer({start, minutesProp}) {
 
         if(start){
 
-            setMinutes(minutesProp)
-
-            const computedStyle = `countdown ${(minutesProp) * 60}s linear infinite forwards`;
-            setStyle(computedStyle);
+            if(!minutesProp){
+                console.log("setting null!")
+                setMinutes(3)
+            } else {
+                console.log("setting incoming!")
+                setMinutes(minutesProp)
+            }
         } 
-
-        setMinutes(minutesProp)
     
     }, [start, minutesProp])
+
+    useEffect(() => {
+        // Calculate the style based on the updated minutes state.
+        const computedStyle = `countdown ${minutes * 60}s linear infinite forwards`;
+        console.log(computedStyle);
+        setStyle(computedStyle);
+    }, [minutes]);
 
     useEffect(() => {
         if(start){
@@ -51,12 +59,18 @@ function Timer({start, minutesProp}) {
         <>
                 <div className="timer-container">
                     <svg>
-                        <circle style = {{animation: style}} r="18" cx="50%" cy="50%"></circle>
-                        <text x="50%" y="50%" text-anchor="middle" alignment-baseline="middle" fill="white" font-size="35">{minutes}m {seconds}s</text>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style={{ stopColor: 'rgb(182, 232, 214)', stopOpacity: 1 }} />
+                            <stop offset="100%" style={{ stopColor: 'rgb(182, 232, 214)', stopOpacity: 0 }} />
+                        </linearGradient>
+                    </defs>
+                        <circle style = {{animation: style}} stroke = 'url(#gradient)' r="18" cx="50%" cy="50%"></circle>
+                        <text x="50%" y="50%" textAnchor="middle" alignmentBaseline="middle" fill="white" fontSize="35">{minutes}m {seconds}s</text>
 
                     </svg>
-
                 </div>
+                    <h4>Working on : {selectedOption}</h4>
         </>
 
 
