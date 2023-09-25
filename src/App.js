@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 
 import Dropdown from "./components/dropdown";
 import Slider from "./components/slider";
+import Timer from "./components/timer";
 
 function App() {
   const [timeOfDay, setTimeOfDay] = useState("");
@@ -11,6 +12,7 @@ function App() {
   const [inputValue, setInputValue] = useState(selectedOption);
   const [inputTime, setInputTime] = useState(0);
   const [inputImportance, setInputImportance] = useState(0);
+  const [timerStart, setTimerStart] = useState(false);
 
   const handleOptionChange = (newOption) => {
     setSelectedOption(newOption);
@@ -37,6 +39,10 @@ function App() {
 
   const handleImportanceChange = (newImportance) => {
     setInputImportance(newImportance);
+  };
+
+  const handleStartTimer = () => {
+    setTimerStart(true);
   };
 
   useEffect(() => {
@@ -117,8 +123,11 @@ function App() {
           </div>
           <h4>Importance</h4>
           <Slider onImportanceChange={handleImportanceChange} />
-          <div className="goButton">Go and Do!</div>
+          <div className="goButton" onClick={() => handleStartTimer()}>
+            Go and Do!
+          </div>
         </div>
+        <Timer start={timerStart} minutesProp={inputTime} />
       </div>
     </div>
   );
