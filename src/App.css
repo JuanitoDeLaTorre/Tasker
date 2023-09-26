@@ -18,13 +18,14 @@ body {
   height: 50vh;
   width: 35vw;
   background-color: rgb(89, 205, 163);
-  border: solid white 2px;
+  border: all white 2px;
   border-radius: 15px;
-  transition: all 600ms ease-in-out;
+  transition: box-shadow 600ms ease-in-out;
   display: flex;
   justify-content: top;
   align-items: center;
   flex-direction: column;
+  transition: background-color 4000ms ease-in-out;
   gap: 3px;
 }
 

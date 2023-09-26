@@ -13,6 +13,8 @@ function App() {
   const [inputTime, setInputTime] = useState(0);
   const [inputImportance, setInputImportance] = useState(0);
   const [timerStart, setTimerStart] = useState(false);
+  const [previousTasks, setPreviousTasks] = useState([]);
+  const [overriedStyle, setOverriedStyle] = useState({});
 
   const handleOptionChange = (newOption) => {
     setSelectedOption(newOption);
@@ -41,8 +43,14 @@ function App() {
     setInputImportance(newImportance);
   };
 
-  const handleStartTimer = () => {
+  const handleStartTask = () => {
     setTimerStart(true);
+
+    if (!previousTasks.includes(inputValue)) {
+      addTask(inputValue, inputImportance, 0);
+    }
+
+    setOverriedStyle({ backgroundColor: "rgb(24, 101, 73)" });
   };
 
   useEffect(() => {
@@ -55,12 +63,49 @@ function App() {
     } else {
       setTimeOfDay("Evening");
     }
+
+    fetch("http://localhost:4040/api/getTasks")
+      .then((response) => response.json())
+      .then((data) => {
+        const extractedTaskNames = data.map((task) => task.taskName);
+        setPreviousTasks(extractedTaskNames);
+      })
+      .catch((error) => {
+        console.error("Error fetching task names:", error);
+      });
   }, []);
+
+  //////////////////////
+
+  const taskData = {
+    taskName: "Do something important",
+    importance: 3,
+    timesAccomplished: 0,
+  };
+
+  const addTask = async (taskName, importance, timesAccomplished) => {
+    fetch("http://localhost:4040/api/addTask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ taskName, importance, timesAccomplished }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Task added:", data.taskName);
+      })
+      .catch((error) => {
+        console.error("Error adding task:", error);
+      });
+  };
+
+  ////////////////////////////
 
   return (
     <div className="App">
       <div className="body">
-        <div className="mainWidget">
+        <div className="mainWidget" style={overriedStyle}>
           {timerStart ? (
             <Timer
               start={timerStart}
@@ -131,13 +176,12 @@ function App() {
               </div>
               <h4>Importance</h4>
               <Slider onImportanceChange={handleImportanceChange} />
-              <div className="goButton" onClick={() => handleStartTimer()}>
+              <div className="goButton" onClick={() => handleStartTask()}>
                 Go and Do!
               </div>
             </>
           )}
         </div>
-        {/* <Timer start={timerStart} minutesProp={inputTime} /> */}
       </div>
     </div>
   );

@@ -1,4 +1,6 @@
 .timer-container {
+    position: relative;
+    overflow:hidden;
     height: 100%;
     width: 100%;
     display: flex;
@@ -9,6 +11,7 @@
 svg {
     height: 100%;
     width: 100%;
+    fill: rgb(89, 205, 163);
 }
 
 svg circle {
@@ -21,7 +24,9 @@ svg circle {
     animation: countdown 1s linear forwards;
     transform: scale(7) rotateY(-180deg) rotateZ(-90deg);
     transform-origin: center; /* Add this to set the center of scaling */
+    box-shadow: 0 0 15px white;
 }
+
 
 @keyframes countdown {
     from {
@@ -30,4 +35,20 @@ svg circle {
     to {
         stroke-dashoffset: 113px;
     }
+}
+
+.textBackground {
+    position: absolute;
+    left: -100px;
+    top: -350px;
+    opacity: 0.15;
+    color: inherit;
+    transform: rotate(-45deg);
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.textBackground > div > * {
+    line-height: 1.2em;
 }
